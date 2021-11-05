@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/04 17:17:30 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/04 16:21:18 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/04 17:00:50 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
 
-int main(int argc, char *argv[], char *envp[])
+char	*ft_get_path(char **envp)
 {
-	char *r;
+	char	*path;
+	char	*tmp;
+	int		i;
 
-	if (100)
+	i = 0;
+	while (envp[i])
 	{
-		printf("%s\n", argv[0]);
-		printf("%d\n", argc);
+		if (!ft_strncmp(envp[i], "PATH=", 5))
+			path = ft_strdup(envp[i]);
+		i++;
 	}
-	r = ft_get_path(envp);
-	printf("%s\n", r);
-	free(r);
-	return (0);
+	tmp = path;
+	path = ft_strdup(tmp + 5);
+	free(tmp);
+	return (path);
 }

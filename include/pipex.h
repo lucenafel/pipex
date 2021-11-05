@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/04 17:17:30 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/01 18:20:09 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/04 16:49:34 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
+#ifndef PIPEX_H
+# define PIPEX_H
 
-int main(int argc, char *argv[], char *envp[])
-{
-	char *r;
+# include <unistd.h>
+# include <stdlib.h>
 
-	if (100)
-	{
-		printf("%s\n", argv[0]);
-		printf("%d\n", argc);
-	}
-	r = ft_get_path(envp);
-	printf("%s\n", r);
-	free(r);
-	return (0);
-}
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_get_path(char **envp);
+char	*ft_strdup(const char *s);
+
+#endif

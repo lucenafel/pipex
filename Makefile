@@ -6,13 +6,15 @@
 #    By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/10/25 19:07:04 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/11/04 16:50:08 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= pipex
 
-SRCS	= main.c
+SRCS	= main.c \
+		  ft_get_path.c \
+		  ft_utils.c
 
 SDIR	= ./src/
 
