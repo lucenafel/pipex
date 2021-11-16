@@ -3,3 +3,4 @@ obj
 *.pdf
 pipex
 *.txt
+testdir/

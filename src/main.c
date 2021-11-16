@@ -6,14 +6,12 @@
 /*   By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/08 20:36:16 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/15 21:49:36 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
 
@@ -27,36 +25,31 @@ char	**parse_cmd(char *argv)
 
 int main(int argc, char *argv[], char *envp[])
 {
-	char **split;
-	char **split2;
-	char *cmd;
-	/* char *exec = "/usr/bin/ls"; */
-	char *test[] = {"./pipex", "-l", 0};
+	int pid;
+	int pipefd[2];
+	char **s = NULL;
+	pid = 0;
 
-	cmd = NULL;
-	split2 = NULL;
-	if (cmd)
-	{
-		printf("%s\n", argv[0]);
+	if (pid)
 		printf("%d\n", argc);
-	}
-	split = ft_get_path(envp);
-	if (argc >= 3)
+	if (pipe(pipefd) == -1)
+		return (-1);
+
+	s[0] = "./pipex";
+	s[1] = "pid";
+	s[2] = 0;
+	pid = fork();
+
+	if (pid > 0)
 	{
-		split2 = parse_cmd(argv[2]);
-		printf("%s\n", split2[0]);
+		execve("cat", argv, envp);
+		dup2(pipefd[1], 1);
 	}
-	if (argc >= 3)
-		cmd = ft_check_cmd(split, split2[0]);
-	printf("%s\n", cmd);
-	execve(cmd, test, envp);
-	/* if (!cmd) */
-	/* 	printf("invalid command\n"); */
-	/* else */
-	/* 	printf("cmd %s\n", cmd); */
-	ft_free(split);
-	ft_free(split2);
-	if (cmd)
-		free(cmd);
-	return (0);
+	else
+	{
+		wait(NULL);
+		dup2(pipefd[0], 0);
+		printf("segunda execução");
+		execve("grep", s, envp);
+	}
 }
