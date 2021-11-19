@@ -6,7 +6,7 @@
 /*   By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/16 17:00:59 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/11/18 22:18:45 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,37 @@ char	*get_cmd(char *arg)
 	return (cmd);
 }
 
-int main(void)
+char	**get_args(char *rawarg)
 {
+	char	**args;
+	char	*trim;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	trim = ft_strtrim(rawarg, " ");
+	while (trim[i] != ' ')
+		i++;
+	tmp = trim;
+	trim = ft_strjoin("./pipex ", trim + i);
+	free(tmp);
+	args = ft_split(trim, ' ');
+	return (args);
+}
+
+int main(int argc, char *argv[])
+{
+	char *test1;
+	char **test2;
+
+	if (argc > 1000)
+		printf("%d\n", argc);
+	test1 = get_cmd(argv[1]);
+	test2 = get_args(argv[1]);
+	printf("cmd: %s\n", test1);
+	while (*test2)
+	{
+		printf("%s\n", *test2);
+		test2++;
+	}
 }
