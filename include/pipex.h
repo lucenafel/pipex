@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 18:20:09 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/16 15:45:57 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/25 20:02:18 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+
+typedef struct s_vars
+{
+	int		infile;
+	int		outfile;
+	int		argc;
+	int		idx;
+	char	**argv;
+	char	**cmd_args;
+	char	*cmd_path;
+	char	**envp;
+}	t_vars;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
