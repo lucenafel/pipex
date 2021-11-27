@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2021/11/18 06:24:02 by lfelipe-          #+#    #+#             */
 /*   Updated: 2021/11/26 18:29:43 by lfelipe-         ###   ########.fr       */
+=======
+/*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/18 22:18:45 by lfelipe-         ###   ########.fr       */
+>>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +45,15 @@ char	**get_args(char *rawarg)
 {
 	char	**args;
 	char	*trim;
+<<<<<<< HEAD
+=======
+	char	*tmp;
+>>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
 	int		i;
 
 	i = 0;
 	trim = ft_strtrim(rawarg, " ");
+<<<<<<< HEAD
 	args = ft_split(trim, ' ');
 	free(trim);
 	return (args);
@@ -132,5 +142,30 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		printf("Wrong num of parameters");
 		exit(1);
+=======
+	while (trim[i] != ' ')
+		i++;
+	tmp = trim;
+	trim = ft_strjoin("./pipex ", trim + i);
+	free(tmp);
+	args = ft_split(trim, ' ');
+	return (args);
+}
+
+int main(int argc, char *argv[])
+{
+	char *test1;
+	char **test2;
+
+	if (argc > 1000)
+		printf("%d\n", argc);
+	test1 = get_cmd(argv[1]);
+	test2 = get_args(argv[1]);
+	printf("cmd: %s\n", test1);
+	while (*test2)
+	{
+		printf("%s\n", *test2);
+		test2++;
+>>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
 	}
 }
