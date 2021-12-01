@@ -5,55 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2021/11/18 06:24:02 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/26 18:29:43 by lfelipe-         ###   ########.fr       */
-=======
-/*   Created: 2021/10/25 19:01:41 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/18 22:18:45 by lfelipe-         ###   ########.fr       */
->>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
+/*   Created: 2021/11/29 14:11:28 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/01 18:45:57 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include <stdio.h> // remove
 
-char	*get_cmd(char *arg)
-{
-	int		count;
-	int		i;
-	char	*trim;
-	char	*cmd;
-
-	i = 0;
-	count = 0;
-	trim = ft_strtrim(arg, " ");
-	while (trim[count] != ' ')
-		count++;
-	cmd = (char *)malloc(count + 1);
-	while (i < count)
-	{
-		cmd[i] = trim[i];
-		i++;
-	}
-	cmd[i] = '\0';
-	free(trim);
-	return (cmd);
-}
 
 char	**get_args(char *rawarg)
 {
 	char	**args;
 	char	*trim;
-<<<<<<< HEAD
-=======
-	char	*tmp;
->>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
 	int		i;
 
 	i = 0;
 	trim = ft_strtrim(rawarg, " ");
-<<<<<<< HEAD
 	args = ft_split(trim, ' ');
 	free(trim);
 	return (args);
@@ -126,7 +94,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc >= 5)
 	{
-		vars.infile = open(argv[1], O_RDONLY, 0666);
+		vars.infile = open(argv[1], O_RDONLY);
 		vars.outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
 		vars.argc = argc;
 		vars.argv = argv;
@@ -141,31 +109,23 @@ int	main(int argc, char *argv[], char *envp[])
 	else
 	{
 		printf("Wrong num of parameters");
-		exit(1);
-=======
-	while (trim[i] != ' ')
-		i++;
-	tmp = trim;
-	trim = ft_strjoin("./pipex ", trim + i);
-	free(tmp);
-	args = ft_split(trim, ' ');
-	return (args);
-}
-
-int main(int argc, char *argv[])
-{
-	char *test1;
-	char **test2;
-
-	if (argc > 1000)
-		printf("%d\n", argc);
-	test1 = get_cmd(argv[1]);
-	test2 = get_args(argv[1]);
-	printf("cmd: %s\n", test1);
-	while (*test2)
-	{
-		printf("%s\n", *test2);
-		test2++;
->>>>>>> d3b02b4e95241b1bb4f07c1048cbf54365e8f999
+		exit(0);
 	}
 }
+
+// int main(int argc, char *argv[])
+// {
+// 	char *test1;
+// 	char **test2;
+
+// 	if (argc > 1000)
+// 		printf("%d\n", argc);
+// 	test1 = get_cmd(argv[1]);
+// 	test2 = get_args(argv[1]);
+// 	printf("cmd: %s\n", test1);
+// 	while (*test2)
+// 	{
+// 		printf("%s\n", *test2);
+// 		test2++;
+// 	}
+// }

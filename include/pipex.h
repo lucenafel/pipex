@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/11/25 20:02:18 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/01 20:05:22 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include "get_next_line.h"
 
 typedef struct s_vars
 {
@@ -39,6 +40,10 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_get_cmd(char *arg);
+char	**ft_get_args(char *rawarg);
 void	ft_free(char **str);
+void	ft_fork(t_vars *vars);
+void	call_args(t_vars *vars);
 
 #endif

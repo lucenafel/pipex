@@ -3,20 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfelipe- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/11/08 19:35:24 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/01 19:18:01 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= pipex
 
-SRCS	= main.c \
+SRCS	= pipex.c \
 		  ft_get_path.c \
 		  ft_utils.c \
 		  ft_utils2.c \
 		  ft_check_cmd.c \
+		  ft_fork.c \
 		  ft_free.c
 
 SDIR	= ./src/
@@ -25,20 +26,22 @@ ODIR	= ./obj/
 
 OBJS	= $(addprefix $(ODIR), $(SRCS:.c=.o))
 
-CC		= clang
+CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
+
+INCLUDE = -I ./include
 
 RM		= rm -rf
 
 $(ODIR)%.o:	$(SDIR)%.c
 			@mkdir -p $(ODIR)
-			$(CC) $(CFLAGS) -c $< -o $@
+			$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(INCLUDE) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			$(RM) $(OBJS) $(ODIR)

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_path.c                                      :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 06:23:00 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/01 20:10:33 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/06/24 20:43:59 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/11/30 21:12:23 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef GET_NEXT_LINE_H
 
-char	**ft_get_path(char **envp)
-{
-	char	**split;
-	char	*path;
-	int		i;
+# define GET_NEXT_LINE_H
 
-	i = 0;
-	while (envp[i])
-	{
-		if (!ft_strncmp(envp[i], "PATH=", 5))
-			path = ft_strdup(envp[i] + 5);
-		i++;
-	}
-	split = ft_split(path, ':');
-	free(path);
-	return (split);
-}
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+
+char	*get_next_line(int fd);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *s, int c);
+
+#endif
