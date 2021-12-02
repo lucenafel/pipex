@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:34:05 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/31 17:10:42 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/02 20:37:14 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_vars	vars;
+	char	*new_str;
+	int		i;
+	int		j;
 
-	if (argc == 5)
+	i = 0;
+	j = 0;
+	new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!new_str || !s1 || !s2)
+		return (NULL);
+	while (s1[i])
 	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
-		{
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
-		}
+		new_str[i] = s1[i];
+		i++;
 	}
-	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+	while (s2[j])
+	{
+		new_str[i + j] = s2[j];
+		j++;
+	}
+	new_str[i + j] = '\0';
+	return (new_str);
 }

@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:34:05 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/24 13:03:18 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/02 20:09:19 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strchr(const char *s, int c)
 {
-	t_vars	vars;
-
-	if (argc == 5)
-	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
-		{
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
-		}
-	}
-	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+	while (*s != '\0' && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }

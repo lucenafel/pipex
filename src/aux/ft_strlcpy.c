@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:34:05 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/24 13:05:39 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/02 20:37:31 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	t_vars	vars;
+	size_t	i;
 
-	if (argc == 5)
+	if (!dst || !src)
+		return (0);
+	i = 0;
+	if (size > 0)
 	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
+		while (i < size - 1 && src[i])
 		{
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
+			dst[i] = src[i];
+			i++;
 		}
+		dst[i] = '\0';
 	}
-	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+	return (ft_strlen(src));
 }

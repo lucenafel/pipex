@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:34:05 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/29 22:01:43 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/02 20:39:39 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_vars	vars;
+	char	*ptr;
+	size_t	s_len;
+	size_t	max_len;
 
-	if (argc == 5)
-	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
-		{
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
-		}
-	}
+	s_len = ft_strlen(s);
+	if (start < s_len)
+		max_len = s_len - start;
 	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+		max_len = 0;
+	if (max_len > len)
+		max_len = len;
+	ptr = (char *)malloc(max_len + 1);
+	if (!ptr)
+		return (NULL);
+	ft_strlcpy(ptr, s + start, max_len + 1);
+	return (ptr);
 }

@@ -6,12 +6,11 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 10:03:07 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/01 18:53:59 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:46:23 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#define BUFFER_SIZE 1
+#include "pipex.h"
 
 static char	*ft_split_line(char **save, int ret);
 static void	ft_strdel(char **str);

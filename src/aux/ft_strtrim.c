@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:34:05 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/31 17:55:06 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/02 20:39:26 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_vars	vars;
+	size_t	i;
 
-	if (argc == 5)
-	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
-		{
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
-		}
-	}
-	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+	i = ft_strlen(s1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	return (ft_substr(s1, 0, i + 1));
 }
