@@ -6,26 +6,27 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 17:23:29 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:31:45 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
+#include <stdio.h> // remove
 
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 {
-	vars->infile = open(argv[1], O_RDONLY);
+	if (!vars->doc)
+		vars->infile = open(argv[1], O_RDONLY);
 	vars->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (vars->infile < 0)
+	if (vars->infile < 0 && !vars->doc)
 	{
-		printf("no such file or directory: %s\n", argv[1]);
+		printf("no such file or directory: %s\n", argv[1]); // error output
 		exit(-1);
 	}
+	vars->idx = 2;
 	vars->argc = argc;
 	vars->argv = argv;
 	vars->envp = envp;
-	vars->idx = 2;
 }
 
 void	ft_call_args(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 19:21:20 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:37:48 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ static void	ft_child(t_vars *vars, int *pipefd)
 		close(pipefd[1]);
 	}
 	close(pipefd[0]);
-	if (!vars->cmd_path)
+	if (!vars->cmd_path && !vars->doc)
 	{
 		perror("ERROR"); // fix error output
 		exit(0);
 	}
-	execve(vars->cmd_path, vars->cmd_args, vars->envp);
+	if (!vars->doc)
+		execve(vars->cmd_path, vars->cmd_args, vars->envp); // treat erros
+	else
+		ft_exec_doc(vars, pipefd);
 }
 
 void	ft_fork(t_vars *vars)
@@ -53,13 +56,6 @@ void	ft_fork(t_vars *vars)
 	{
 		dup2(vars->infile, 0);
 		close(vars->infile);
-	}
-	else if (vars->doc)
-	{
-		writte(pipefd[1], vars->doc_str, ft_strlen(vars->doc_str));
-		dup2(pipefd[0], 0);
-		close(pipefd[0]);
-		close(pipefd[1]);
 	}
 	pid = fork();
 	if (pid == 0)

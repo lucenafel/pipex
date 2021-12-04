@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 23:28:15 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/12/03 00:43:33 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/03 15:32:24 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remover
 
-int	main(int argc, char *argv[], char *envp[])
+void	here_doc(char *deli, int fd)
 {
-	t_vars	vars;
+	char	*ret;
+	size_t	len;
 
-	if (argc == 5)
+	while(1) 
 	{
-		vars.doc = 0;
-		ft_init_vars(&vars, argc, argv, envp);
-		while (vars.idx < argc - 1)
+		ret = get_next_line(0);
+		len = ft_strlen(ret);
+		if (!ft_strncmp(ret, deli, len - 1))
 		{
-			ft_call_args(&vars);
-			ft_fork(&vars);
-			ft_free(vars.cmd_args);
-			vars.idx++;
+			free(ret);
+			break ;
+		}
+		else
+		{
+			write(fd, ret, len);
+			free(ret);
 		}
 	}
-	else
-		printf("Wrong num of parameters\n"); // error handling function ?
-	return (0);
+}
+
+void	ft_exec_doc(t_vars *vars, int *fd)
+{
+	here_doc(vars->argv[2], fd[1]);
+	close(fd[0]);
+	close(fd[1]);
+	vars->doc = 0;
 }
