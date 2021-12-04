@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/02 20:46:42 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/03 15:32:12 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include "get_next_line.h"
 
 # define BUFFER_SIZE 1
 
@@ -43,6 +42,8 @@ void	ft_free(char **str);
 void	ft_fork(t_vars *vars);
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp);
 void	ft_call_args(t_vars *vars);
+void	here_doc(char *deli, int fd);
+void	ft_exec_doc(t_vars *vars, int *fd);
 
 /* aux function */
 
@@ -56,7 +57,5 @@ char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-
-
 
 #endif

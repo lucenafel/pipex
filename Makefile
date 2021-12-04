@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/02 17:16:31 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/03 16:52:03 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,31 @@ NAME	= pipex
 
 SRCS	= pipex.c \
 		  ft_get_path.c \
-		  ft_utils.c \
-		  ft_utils2.c \
 		  ft_check_cmd.c \
 		  ft_fork.c \
 		  ft_inits.c \
-		  ft_free.c
+		  ft_free.c \
+		  here_doc.c \
+		  $(AUD)
+
+AUX		= ft_split.c \
+		  ft_strchr.c \
+		  ft_strdup.c \
+		  ft_strjoin.c \
+		  ft_strlcpy.c \
+		  ft_strlen.c \
+		  ft_strncmp.c \
+		  ft_strtrim.c \
+		  ft_substr.c \
+		  get_next_line.c
 
 SDIR	= ./src/
 
 ODIR	= ./obj/
+
+ADIR	= aux/
+
+AUD	= $(addprefix $(ADIR), $(AUX))
 
 OBJS	= $(addprefix $(ODIR), $(SRCS:.c=.o))
 
@@ -37,6 +52,7 @@ RM		= rm -rf
 
 $(ODIR)%.o:	$(SDIR)%.c
 			@mkdir -p $(ODIR)
+			@mkdir -p $(ODIR)/$(ADIR)
 			$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
 
 all:		$(NAME)
