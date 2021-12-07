@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 01:32:38 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 02:37:40 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/07 03:30:43 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_here_doc(char *deli, int *fd)
 	size_t	len;
 
 	close(fd[0]);
-	while(1) 
+	while (1)
 	{
 		write(1, "here_doc> ", 10);
 		ret = get_next_line(0);
