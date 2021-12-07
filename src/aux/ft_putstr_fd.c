@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 06:22:39 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 02:08:10 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/29 00:20:18 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/07 01:29:37 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_free(char **str)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (str && str[i])
+	while (*s != '\0')
 	{
-		while (str[i])
-		{
-			free(str[i]);
-			i++;
-		}
-		free(str);
+		write(fd, s, 1);
+		s++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/03 15:37:48 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/07 03:10:19 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static void	ft_parent(int *pipefd, int pid)
 {
 	int	status;
 
-	close(pipefd[1]);
-	waitpid(pid, &status, 0);
+	close(pipefd[1]); waitpid(pid, &status, 0);
 }
 
 static void	ft_child(t_vars *vars, int *pipefd)
@@ -34,15 +33,20 @@ static void	ft_child(t_vars *vars, int *pipefd)
 		close(pipefd[1]);
 	}
 	close(pipefd[0]);
-	if (!vars->cmd_path && !vars->doc)
+	if (!vars->cmd_path)
 	{
-		perror("ERROR"); // fix error output
+		write(2, "command not found: ", 19);
+		write(2, vars->argv[vars->idx], ft_strlen(vars->argv[vars->idx]));
+		ft_free(vars->cmd_args);
+		// perror("ERROR"); // fix error output
 		exit(0);
 	}
-	if (!vars->doc)
-		execve(vars->cmd_path, vars->cmd_args, vars->envp); // treat erros
-	else
-		ft_exec_doc(vars, pipefd);
+	if (execve(vars->cmd_path, vars->cmd_args, vars->envp) == -1)
+	{
+		free(vars->cmd_path);
+		ft_free(vars->cmd_args);
+		exit(-1);
+	}
 }
 
 void	ft_fork(t_vars *vars)

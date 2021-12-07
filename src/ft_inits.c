@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/03 15:31:45 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/07 02:07:11 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 {
+	vars->infile = -1;
 	if (!vars->doc)
 		vars->infile = open(argv[1], O_RDONLY);
 	vars->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0666);

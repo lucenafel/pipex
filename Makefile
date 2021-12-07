@@ -6,19 +6,19 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/03 16:52:03 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/07 01:51:13 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= pipex
 
-SRCS	= pipex.c \
+SRCS	= pipex_bonus.c \
 		  ft_get_path.c \
 		  ft_check_cmd.c \
 		  ft_fork.c \
 		  ft_inits.c \
 		  ft_free.c \
-		  here_doc.c \
+		  ft_here_doc.c \
 		  $(AUD)
 
 AUX		= ft_split.c \
@@ -30,6 +30,7 @@ AUX		= ft_split.c \
 		  ft_strncmp.c \
 		  ft_strtrim.c \
 		  ft_substr.c \
+		  ft_putstr_fd.c \
 		  get_next_line.c
 
 SDIR	= ./src/

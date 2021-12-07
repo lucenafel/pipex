@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/03 15:32:12 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/07 01:51:34 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_vars
 	int		argc;
 	int		idx;
 	int		doc;
-	char	*doc_str;
+	char	*doc_str; // remove if isn't needed any more
 	char	**argv;
 	char	**cmd_args;
 	char	*cmd_path;
@@ -42,8 +42,8 @@ void	ft_free(char **str);
 void	ft_fork(t_vars *vars);
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp);
 void	ft_call_args(t_vars *vars);
-void	here_doc(char *deli, int fd);
-void	ft_exec_doc(t_vars *vars, int *fd);
+void	here_doc(char *deli, int *fd);
+void	ft_exec_doc(t_vars *vars);
 
 /* aux function */
 
@@ -55,6 +55,7 @@ char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
+void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
