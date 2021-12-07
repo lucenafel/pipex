@@ -5,3 +5,4 @@ pipex
 *.txt
 testdir/
 .vscode
+file*
