@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 01:32:38 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 03:30:43 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/07 18:40:54 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_exec_doc(t_vars *vars)
 	int	pipefd[2];
 	int	pid;
 
+	vars->doc = 0;
 	if (pipe(pipefd) == -1)
 		printf("PIPE ERROR"); // change for message error
 	pid = fork();
@@ -55,5 +56,4 @@ void	ft_exec_doc(t_vars *vars)
 	dup2(pipefd[0], 0);
 	close(pipefd[0]);
 	close(pipefd[1]);
-	vars->doc = 0;
 }

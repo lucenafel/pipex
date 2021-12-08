@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/07 01:51:13 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/08 17:37:10 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS	= pipex_bonus.c \
 		  ft_inits.c \
 		  ft_free.c \
 		  ft_here_doc.c \
+		  ft_splitter.c \
+		  ft_error.c \
 		  $(AUD)
 
 AUX		= ft_split.c \
@@ -31,6 +33,7 @@ AUX		= ft_split.c \
 		  ft_strtrim.c \
 		  ft_substr.c \
 		  ft_putstr_fd.c \
+		  ft_putendl_fd.c \
 		  get_next_line.c
 
 SDIR	= ./src/

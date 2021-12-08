@@ -6,22 +6,11 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:22:28 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/01 18:58:13 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:09:33 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char	**ft_get_args(char *rawarg)
-{
-	char	**args;
-	char	*trim;
-
-	trim = ft_strtrim(rawarg, " ");
-	args = ft_split(trim, ' ');
-	free(trim);
-	return (args);
-}
 
 char	*ft_check_cmd(char **path, char *cmd)
 {
@@ -51,25 +40,21 @@ char	*ft_check_cmd(char **path, char *cmd)
 	return (join);
 }
 
-char	*ft_get_cmd(char *arg)
+int		ft_check_slash(char *cmd)
 {
-	int		count;
-	int		i;
-	char	*trim;
-	char	*cmd;
+	int	i;
+	int	signal;
 
 	i = 0;
-	count = 0;
-	trim = ft_strtrim(arg, " ");
-	while (trim[count] != ' ')
-		count++;
-	cmd = (char *)malloc(count + 1);
-	while (i < count)
+	signal = 0;
+	while (cmd[i])
 	{
-		cmd[i] = trim[i];
+		if (cmd[i] == '/')
+		{
+			signal = 1;
+			break ;
+		}
 		i++;
 	}
-	cmd[i] = '\0';
-	free(trim);
-	return (cmd);
+	return (signal);
 }

@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 01:32:26 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:34:13 by lfelipe-         ###   ########.fr       */
+/*   Created: 2021/05/29 01:17:41 by lfelipe-          #+#    #+#             */
+/*   Updated: 2021/12/08 17:25:48 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(char *str, int code)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (code == 1)
-	{
-		ft_putstr_fd("command not found: ", 2);
-		ft_putendl_fd(str, 2);
-	}
-	else if (code == 2)
-	{
-		ft_putstr_fd("no such file or directory: ", 2);
-		ft_putendl_fd(str, 2);
-	}
-	else if (code == 3)
-		ft_putendl_fd("pipe error", 2);
-	else
-		ft_putendl_fd("fork error", 2);
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }

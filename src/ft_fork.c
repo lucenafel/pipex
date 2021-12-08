@@ -6,21 +6,21 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 03:10:19 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:50:31 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> //remover
 
 static void	ft_parent(int *pipefd, int pid)
 {
 	int	status;
 
-	close(pipefd[1]); waitpid(pid, &status, 0);
+	close(pipefd[1]);
+	waitpid(pid, &status, 0);
 }
 
-static void	ft_child(t_vars *vars, int *pipefd)
+static void	ft_dup(t_vars *vars, int *pipefd)
 {
 	if (vars->idx == vars->argc - 2)
 	{
@@ -33,19 +33,17 @@ static void	ft_child(t_vars *vars, int *pipefd)
 		close(pipefd[1]);
 	}
 	close(pipefd[0]);
-	if (!vars->cmd_path)
+}
+
+static void	ft_child(t_vars *vars, int *pipefd)
+{
+	ft_dup(vars, pipefd);
+	ft_init_args(vars);
+	if (execve(vars->cmd_args[0], vars->cmd_args, vars->envp) == -1)
 	{
-		write(2, "command not found: ", 19);
-		write(2, vars->argv[vars->idx], ft_strlen(vars->argv[vars->idx]));
+		ft_error(vars->cmd_args[0], 1);
 		ft_free(vars->cmd_args);
-		// perror("ERROR"); // fix error output
 		exit(0);
-	}
-	if (execve(vars->cmd_path, vars->cmd_args, vars->envp) == -1)
-	{
-		free(vars->cmd_path);
-		ft_free(vars->cmd_args);
-		exit(-1);
 	}
 }
 
@@ -55,13 +53,16 @@ void	ft_fork(t_vars *vars)
 	int	pipefd[2];
 
 	if (pipe(pipefd) == -1)
-		printf("PIPE ERROR\n"); // fix error output
-	if (vars->idx == 2 && !vars->doc)
+		ft_error(NULL, 3);
+	//if (vars->idx == 2 && !vars->doc) caso de ruim 
+	if (vars->idx == 2)
 	{
 		dup2(vars->infile, 0);
 		close(vars->infile);
 	}
 	pid = fork();
+	if (pid < 0)
+		ft_error(NULL, 4);
 	if (pid == 0)
 		ft_child(vars, pipefd);
 	else

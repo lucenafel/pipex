@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 01:51:34 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:36:29 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,21 @@ typedef struct s_vars
 	char	**envp;
 }	t_vars;
 
+
+int		ft_check_slash(char *cmd);
 char	**ft_get_path(char **envp);
 char	*ft_check_cmd(char **path, char *cmd);
-char	*ft_get_cmd(char *arg);
-char	**ft_get_args(char *rawarg);
 void	ft_free(char **str);
 void	ft_fork(t_vars *vars);
-void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp);
-void	ft_call_args(t_vars *vars);
 void	here_doc(char *deli, int *fd);
 void	ft_exec_doc(t_vars *vars);
+void	ft_init_args(t_vars *vars);
+void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp);
+void	ft_error(char *str, int code);
 
-/* aux function */
+char	**ft_split_args(char const *args, char splitter);
+
+// aux function */ //remove
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -55,6 +58,7 @@ char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
+void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);

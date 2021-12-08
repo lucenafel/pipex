@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 02:07:11 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:35:25 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 	vars->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (vars->infile < 0 && !vars->doc)
 	{
-		printf("no such file or directory: %s\n", argv[1]); // error output
+		ft_error(argv[1], 2);
 		exit(-1);
 	}
 	vars->idx = 2;
@@ -30,18 +30,27 @@ void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 	vars->envp = envp;
 }
 
-void	ft_call_args(t_vars *vars)
+void	ft_init_args(t_vars *vars)
 {
 	char	*cmd;
 	char	**path;
 
-	vars->cmd_args = ft_get_args(vars->argv[vars->idx]);
-	/* IMPORTANT check for full paths before doing the access check */
-	cmd = ft_get_cmd(vars->argv[vars->idx]); //
+	vars->cmd_args = ft_split_args(vars->argv[vars->idx], ' ');
 	path = ft_get_path(vars->envp);
-	vars->cmd_path = ft_check_cmd(path, cmd);
-	free(vars->cmd_args[0]);
-	vars->cmd_args[0] = vars->cmd_path;
-	free(cmd);
+	if (!ft_check_slash(vars->cmd_args[0]))
+	{
+		cmd = ft_check_cmd(path, vars->cmd_args[0]);
+		if (cmd)
+		{
+			free(vars->cmd_args[0]);
+			vars->cmd_args[0] = cmd;
+		}
+		else
+			ft_error(vars->cmd_args[0], 1); // error output function
+	}
 	ft_free(path);
+
+
+	
+
 }
