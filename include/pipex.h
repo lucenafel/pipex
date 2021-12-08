@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:24:10 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:36:29 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:55:02 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ typedef struct s_vars
 	int		argc;
 	int		idx;
 	int		doc;
-	char	*doc_str; // remove if isn't needed any more
 	char	**argv;
 	char	**cmd_args;
-	char	*cmd_path;
 	char	**envp;
 }	t_vars;
-
 
 int		ft_check_slash(char *cmd);
 char	**ft_get_path(char **envp);
@@ -45,10 +42,9 @@ void	ft_exec_doc(t_vars *vars);
 void	ft_init_args(t_vars *vars);
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp);
 void	ft_error(char *str, int code);
-
 char	**ft_split_args(char const *args, char splitter);
 
-// aux function */ //remove
+/* aux functions */
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);

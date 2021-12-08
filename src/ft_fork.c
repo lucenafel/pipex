@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:50:31 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:54:26 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_fork(t_vars *vars)
 
 	if (pipe(pipefd) == -1)
 		ft_error(NULL, 3);
-	//if (vars->idx == 2 && !vars->doc) caso de ruim 
 	if (vars->idx == 2)
 	{
 		dup2(vars->infile, 0);

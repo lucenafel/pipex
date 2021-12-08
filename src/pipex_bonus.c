@@ -6,16 +6,15 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 17:53:38 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:38:23 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:59:10 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remove
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_vars vars;
+	t_vars	vars;
 
 	vars.doc = 0;
 	if (argc >= 5)
@@ -33,6 +32,6 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 	}
 	else
-		printf("Wrong num of parameters\n"); // error handling function ?
+		ft_putendl_fd("wrong num of parameters", 1);
 	return (0);
 }

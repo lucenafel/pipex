@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 01:32:38 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 18:40:54 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:57:08 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	ft_exec_doc(t_vars *vars)
 
 	vars->doc = 0;
 	if (pipe(pipefd) == -1)
-		printf("PIPE ERROR"); // change for message error
+		ft_error(NULL, 3);
 	pid = fork();
 	if (pid < 0)
-		printf("fork ERROR"); // change for message error 
+		ft_error(NULL, 4);
 	if (pid == 0)
 		ft_here_doc(vars->argv[vars->idx], pipefd);
 	else

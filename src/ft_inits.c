@@ -6,12 +6,11 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:35:25 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:59:36 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h> // remove
 
 void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 {
@@ -46,11 +45,7 @@ void	ft_init_args(t_vars *vars)
 			vars->cmd_args[0] = cmd;
 		}
 		else
-			ft_error(vars->cmd_args[0], 1); // error output function
+			ft_error(vars->cmd_args[0], 1);
 	}
 	ft_free(path);
-
-
-	
-
 }

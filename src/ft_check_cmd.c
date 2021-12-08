@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:22:28 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:09:33 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:57:21 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_check_cmd(char **path, char *cmd)
 	return (join);
 }
 
-int		ft_check_slash(char *cmd)
+int	ft_check_slash(char *cmd)
 {
 	int	i;
 	int	signal;
