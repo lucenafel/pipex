@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/08 17:37:10 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/09 00:15:53 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ ODIR	= ./obj/
 
 ADIR	= aux/
 
-AUD	= $(addprefix $(ADIR), $(AUX))
+AUD		= $(addprefix $(ADIR), $(AUX))
 
 OBJS	= $(addprefix $(ODIR), $(SRCS:.c=.o))
 

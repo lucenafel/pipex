@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:59:36 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 15:26:25 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,17 @@ void	ft_init_args(t_vars *vars)
 			vars->cmd_args[0] = cmd;
 		}
 		else
+		{
 			ft_error(vars->cmd_args[0], 1);
+			ft_free(vars->cmd_args);
+			exit(127);
+		}
+	}
+	else if (access(vars->cmd_args[0], X_OK < 0))
+	{
+		ft_error(vars->cmd_args[0], 1);
+		ft_free(vars->cmd_args);
+		exit(127);
 	}
 	ft_free(path);
 }
