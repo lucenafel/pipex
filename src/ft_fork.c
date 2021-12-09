@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/09 17:20:46 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:38:13 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ static void	ft_dup(t_vars *vars, int *pipefd)
 
 static void	ft_child(t_vars *vars, int *pipefd)
 {
+	int	x;
+
 	ft_dup(vars, pipefd);
 	ft_init_args(vars);
 	if (vars->cmd_args[0])
 	{
-		if (execve(vars->cmd_args[0], vars->cmd_args, vars->envp) < 0)
+		x = execve(vars->cmd_args[0], vars->cmd_args, vars->envp);
+		if (x < 0)
 		{
 			ft_free(vars->cmd_args);
 			exit(1);

@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:22:39 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 02:08:10 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:55:14 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	ft_free(char **str)
 			free(str[i]);
 			i++;
 		}
-		free(str);
 	}
+	free(str);
 }

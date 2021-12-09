@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:22:28 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/09 15:35:26 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:43:54 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_check_slash(char *cmd)
 
 	i = 0;
 	signal = 0;
-	if (*cmd)
+	if (cmd)
 	{
 		while (cmd[i])
 		{

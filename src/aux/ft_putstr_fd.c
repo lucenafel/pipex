@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 00:20:18 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/07 01:29:37 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:44:44 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s != '\0')
+	while (s && *s != '\0')
 	{
 		write(fd, s, 1);
 		s++;

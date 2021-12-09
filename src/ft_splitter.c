@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:03:31 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:56:27 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:40:38 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ char	**ft_split_args(char const *args, char splitter)
 	args_split = (char **)malloc((args_count + 1) * sizeof(char *));
 	while (i < args_count)
 	{
-		args_split[i] = ft_strtrim(args_address[i], " ");
+		args_split[i] = ft_strdup(args_address[i]);
 		i++;
 	}
-	args_address[i] = 0;
+	args_split[i] = 0;
 	free(args_copy);
 	free(args_address);
 	return (args_split);
