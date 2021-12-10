@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/10 05:52:12 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/10 05:54:34 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ BOBJ	= $(addprefix $(ODIR), $(BPIPE:.c=.o))
 
 CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 
 INCLUDE = -I ./include
 
