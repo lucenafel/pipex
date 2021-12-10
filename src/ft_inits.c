@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:39:11 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/09 17:46:37 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 18:32:57 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ void	ft_init_vars(t_vars *vars, int argc, char **argv, char **envp)
 	if (vars->infile < 0 && !vars->doc)
 	{
 		ft_error(argv[1], 2);
-		exit(-1);
+		exit(1);
 	}
 	vars->idx = 2;
 	vars->argc = argc;
 	vars->argv = argv;
 	vars->envp = envp;
+}
+
+static void	ft_exit(t_vars *vars, char **path)
+{
+	ft_error(vars->cmd_args[0], 1);
+	ft_free(vars->cmd_args);
+	ft_free(path);
+	exit(127);
 }
 
 void	ft_init_args(t_vars *vars)
@@ -45,19 +53,9 @@ void	ft_init_args(t_vars *vars)
 			vars->cmd_args[0] = cmd;
 		}
 		else
-		{
-			ft_error(vars->cmd_args[0], 1);
-			ft_free(vars->cmd_args);
-			ft_free(path);
-			exit(127);
-		}
+			ft_exit(vars, path);
 	}
 	else if (access(vars->cmd_args[0], X_OK < 0))
-	{
-		ft_error(vars->cmd_args[0], 1);
-		ft_free(vars->cmd_args);
-		ft_free(path);
-		exit(127);
-	}
+		ft_exit(vars, path);
 	ft_free(path);
 }

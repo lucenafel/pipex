@@ -6,18 +6,17 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 20:14:58 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/09 17:38:13 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:21:26 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	ft_parent(int *pipefd, int pid)
+static void	ft_parent(t_vars *vars, int *pipefd)
 {
-	int	status;
-
 	close(pipefd[1]);
-	waitpid(pid, &status, 0);
+	if (vars->idx == vars->argc - 2)
+		waitpid(-1, NULL, 0);
 }
 
 static void	ft_dup(t_vars *vars, int *pipefd)
@@ -72,7 +71,7 @@ void	ft_fork(t_vars *vars)
 	if (pid == 0)
 		ft_child(vars, pipefd);
 	else
-		ft_parent(pipefd, pid);
+		ft_parent(vars, pipefd);
 	dup2(pipefd[0], 0);
 	close(pipefd[0]);
 }
