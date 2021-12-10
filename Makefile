@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/10 05:45:03 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/10 05:52:12 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ clean:
 			$(RM) $(OBJS) $(ODIR)
 
 fclean:		clean
-			$(RM) $(NAME) $(OBJS) $(ODIR)
+			$(RM) $(NAME) $(BNAME) $(OBJS) $(ODIR)
 
 re:			fclean all
 
