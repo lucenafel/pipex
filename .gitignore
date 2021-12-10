@@ -2,6 +2,7 @@
 obj
 *.pdf
 pipex
+pipex_bonus
 *.txt
 testdir/
 .vscode

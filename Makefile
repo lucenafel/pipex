@@ -6,14 +6,19 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/09 00:15:53 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/10 05:45:03 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= pipex
 
-SRCS	= pipex_bonus.c \
-		  ft_get_path.c \
+BNAME	= pipex_bonus
+
+MPIPE	= pipex.c
+
+BPIPE	= pipex_bonus.c
+
+SRCS	= ft_get_path.c \
 		  ft_check_cmd.c \
 		  ft_fork.c \
 		  ft_inits.c \
@@ -46,6 +51,10 @@ AUD		= $(addprefix $(ADIR), $(AUX))
 
 OBJS	= $(addprefix $(ODIR), $(SRCS:.c=.o))
 
+MOBJ	= $(addprefix $(ODIR), $(MPIPE:.c=.o))
+
+BOBJ	= $(addprefix $(ODIR), $(BPIPE:.c=.o))
+
 CC		= gcc
 
 CFLAGS	= -Wall -Wextra -Werror -g
@@ -61,8 +70,13 @@ $(ODIR)%.o:	$(SDIR)%.c
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
-			$(CC) $(INCLUDE) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME):	$(OBJS) $(MOBJ)
+			$(CC) $(INCLUDE) $(CFLAGS) $(MOBJ) $(OBJS) -o $(NAME)
+
+$(BNAME):	$(OBJS) $(BOBJ)
+			$(CC) $(INCLUDE) $(CFLAGS) $(BOBJ) $(OBJS) -o $(BNAME)
+
+bonus:		$(BNAME)
 
 clean:
 			$(RM) $(OBJS) $(ODIR)
