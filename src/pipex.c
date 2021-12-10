@@ -6,7 +6,7 @@
 /*   By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:41:55 by lfelipe-          #+#    #+#             */
-/*   Updated: 2021/12/08 17:58:58 by lfelipe-         ###   ########.fr       */
+/*   Updated: 2021/12/10 05:50:51 by lfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_vars	vars;
 
+	vars.doc = 0;
 	if (argc == 5)
 	{
 		ft_init_vars(&vars, argc, argv, envp);
