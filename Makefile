@@ -6,7 +6,7 @@
 #    By: lfelipe- <lfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 01:39:35 by lfelipe-          #+#    #+#              #
-#    Updated: 2021/12/10 05:54:34 by lfelipe-         ###   ########.fr        #
+#    Updated: 2021/12/14 23:00:39 by lfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ RM		= rm -rf
 $(ODIR)%.o:	$(SDIR)%.c
 			@mkdir -p $(ODIR)
 			@mkdir -p $(ODIR)/$(ADIR)
-			$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
+			@$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
 
 all:		$(NAME)
 
@@ -74,15 +74,15 @@ $(NAME):	$(OBJS) $(MOBJ)
 			$(CC) $(INCLUDE) $(CFLAGS) $(MOBJ) $(OBJS) -o $(NAME)
 
 $(BNAME):	$(OBJS) $(BOBJ)
-			$(CC) $(INCLUDE) $(CFLAGS) $(BOBJ) $(OBJS) -o $(BNAME)
+			@$(CC) $(INCLUDE) $(CFLAGS) $(BOBJ) $(OBJS) -o $(BNAME)
 
 bonus:		$(BNAME)
 
 clean:
-			$(RM) $(OBJS) $(ODIR)
+			@$(RM) $(OBJS) $(ODIR)
 
 fclean:		clean
-			$(RM) $(NAME) $(BNAME) $(OBJS) $(ODIR)
+			@$(RM) $(NAME) $(BNAME) $(OBJS) $(ODIR)
 
 re:			fclean all
 
